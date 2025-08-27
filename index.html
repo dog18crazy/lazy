@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Hello GitHub Pages</title>
+  <meta charset="UTF-8">
+  <title>测试华为云函数</title>
 </head>
 <body>
-  <h1>我的第一个 GitHub Pages 网站</h1>
-  <p>这就是一个单独的 index.html。</p>
+  <h1>云函数调用结果：</h1>
+  <pre id="output"></pre>
+
+  <script>
+    const output = document.getElementById('output');
+
+    fetch('https://iq7hvj255lb1z4ru8m.api-drcn.agconnect.link/test2', { method: 'GET' })
+      .then(res => res.json())
+      .then(data => {
+        output.textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        output.textContent = '调用出错: ' + err;
+      });
+  </script>
 </body>
 </html>
