@@ -11,8 +11,12 @@
   <script>
     const output = document.getElementById('output');
 
+    // 注意这里用 API 网关触发器的公网地址
     fetch('https://iq7hvj255lb1z4ru8m.api-drcn.agconnect.link/test2', { method: 'GET' })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("HTTP error " + res.status);
+        return res.json();
+      })
       .then(data => {
         output.textContent = JSON.stringify(data, null, 2);
       })
